@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const path = require("path");
 require('dotenv').config()
 
 const app = express()
@@ -20,6 +21,7 @@ mongoose.connect(
 
 const port = process.env.PORT || 5001;
 
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(require("./routes/conversation"));
 app.use(require("./routes/users"));
 app.use(require("./routes/message"));
